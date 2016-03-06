@@ -1,0 +1,34 @@
+{
+  "name": "bitmap-converter",
+  "version": "1.0.0",
+  "description": "converts bitmap colors via file buffer manipulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexwuwei/bitmap-converter.git"
+  },
+  "keywords": [
+    "bitmap",
+    "convert",
+    "manipulate",
+    "buffer",
+    "gulp",
+    "mocha",
+    "chai"
+  ],
+  "author": "Hugo A Guerra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexwuwei/bitmap-converter/issues"
+  },
+  "homepage": "https://github.com/alexwuwei/bitmap-converter#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.3.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0"
+  }
+}
