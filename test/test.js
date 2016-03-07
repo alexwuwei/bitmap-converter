@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var fs = require('fs')
+var fs = require('fs');
 var processHeader = require(__dirname + '/../lib/processHeader.js');
 var colorHandler = require(__dirname + '/../lib/colorHandler.js');
 
