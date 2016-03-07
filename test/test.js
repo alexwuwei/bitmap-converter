@@ -5,9 +5,25 @@ var fs = require('fs');
 var processHeader = require(__dirname + '/../lib/processHeader.js');
 var colorHandler = require(__dirname + '/../lib/colorHandler.js');
 
-describe('processHeaderTesting', function() {
-  it('should return an object with all the properties of the bitmap header', function(done){
+describe('processHeaderNoPaletteTesting', function() {
+  it('should return an object with all the properties of the bitmap header for non palette files', function(done){
     var bitmapImage = fs.readFileSync(__dirname + '/../img/non-palette-bitmap.bmp');
+    var processHeaderData = processHeader(bitmapImage);
+    console.log('bitmap header stuff is: ');
+    console.dir(processHeader);
+    expect(processHeaderData).to.have.property('headField');
+    expect(processHeaderData).to.have.property('size');
+    expect(processHeaderData).to.have.property('pixelArrayStartLocation');
+    expect(processHeaderData).to.have.property('paletteColors');
+    expect(processHeaderData).to.have.property('height');
+    expect(processHeaderData).to.have.property('width');
+    done();
+  });
+});
+
+describe('processHeaderWithPaletteTesting', function() {
+  it('should return an object with all the properties of the bitmap header for palette files', function(done){
+    var bitmapImage = fs.readFileSync(__dirname + '/../img/palette-bitmap.bmp');
     var processHeaderData = processHeader(bitmapImage);
     console.log('bitmap header stuff is: ');
     console.dir(processHeader);
