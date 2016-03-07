@@ -1,25 +1,41 @@
 'use strict';
 
 var expect = require('chai').expect;
-var fs = require('fs')
+var fs = require('fs');
 var processHeader = require(__dirname + '/../lib/processHeader.js');
-var colorHandler = require(__dirname + '/../lib/colorHandler.js')
+var colorHandler = require(__dirname + '/../lib/colorHandler.js');
 
-describe('processHeaderTesting', function() {
-  it('should return an object with all the properties of the bitmap header', function(done){
+describe('processHeaderNoPaletteTesting', function() {
+  it('should return an object with all the properties of the bitmap header for non palette files', function(done){
     var bitmapImage = fs.readFileSync(__dirname + '/../img/non-palette-bitmap.bmp');
-    var processHeader = processHeader(bitmapImage);
+    var processHeaderData = processHeader(bitmapImage);
     console.log('bitmap header stuff is: ');
     console.dir(processHeader);
-      expect(processHeader).to.have.property('headField');
-      expect(processHeader).to.have.property('size');
-      expect(processHeader).to.have.property('pixelArrayStartLocation');
-      expect(processHeader).to.have.property('paletteColors');
-      expect(processHeader).to.have.property('height');
-      expect(processHeader).to.have.property('width');
-      done()
-    });
+    expect(processHeaderData).to.have.property('headField');
+    expect(processHeaderData).to.have.property('size');
+    expect(processHeaderData).to.have.property('pixelArrayStartLocation');
+    expect(processHeaderData).to.have.property('paletteColors');
+    expect(processHeaderData).to.have.property('height');
+    expect(processHeaderData).to.have.property('width');
+    done();
   });
+});
+
+describe('processHeaderWithPaletteTesting', function() {
+  it('should return an object with all the properties of the bitmap header for palette files', function(done){
+    var bitmapImage = fs.readFileSync(__dirname + '/../img/palette-bitmap.bmp');
+    var processHeaderData = processHeader(bitmapImage);
+    console.log('bitmap header stuff is: ');
+    console.dir(processHeader);
+    expect(processHeaderData).to.have.property('headField');
+    expect(processHeaderData).to.have.property('size');
+    expect(processHeaderData).to.have.property('pixelArrayStartLocation');
+    expect(processHeaderData).to.have.property('paletteColors');
+    expect(processHeaderData).to.have.property('height');
+    expect(processHeaderData).to.have.property('width');
+    done();
+  });
+});
 
 describe('colorHandlerInvertTesting', function(){
   it('should invert colors', function() {
@@ -36,5 +52,47 @@ describe('colorHandlerInvertTesting', function(){
       a: 0
     };
     expect(colorHandler.invertColors(input)).to.eql(expectedOutput);
+  });
+});
+
+describe('colorHandlerGrayscaleTesting', function(){
+  it('should grayscale colors', function() {
+    var input = {
+      r: 10,
+      g: 1,
+      b: 0,
+      a: 255
+    };
+    var expectedOutput = {
+      r: input.r * 0.7,
+      g: input.g * 0.7,
+      b: input.b * 0.7,
+      a: input.a * 0.7
+    };
+    expect(colorHandler.grayscaleColors(input)).to.eql(expectedOutput);
+  });
+});
+
+describe('colorHandlerBluescaleTesting', function(){
+  it('should bluescale colors', function() {
+    var input = {
+      r: 10,
+      g: 1,
+      b: 0,
+      a: 255
+    };
+    var expectedOutput = {
+      r: input.r,
+      g: input.g,
+      b: input.b * 0.7,
+      a: input.a
+    };
+    expect(colorHandler.bluescaleColors(input)).to.eql(expectedOutput);
+  });
+});
+
+describe('transform testing for inverting non palette bitmap', function(){
+  it('should make the transform object equal to the invert non palette function', function () {
+
   });
 });
