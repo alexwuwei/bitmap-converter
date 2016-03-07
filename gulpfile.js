@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     lint = require('gulp-eslint'),
     mocha = require('gulp-mocha'),
     chai = require('gulp-chai'),
-    paths = ['*.js', 'lib/*.js', 'test/*.js'];
+    paths = ['*.js', 'lib/*.js', 'test/*.js', 'index.js', 'gulpfile.js'];
 
 gulp.task('lint' function(){
   return gulp.src(paths);
