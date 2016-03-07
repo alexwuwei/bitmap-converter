@@ -18,7 +18,7 @@ gulp.task('mocha', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch(paths, ['mocha', 'eslint'])
+  gulp.watch(paths, ['mocha', 'eslint']);
 });
 
-gulp.task('default', ['lint', 'mocha', 'watch']);
+gulp.task('default', ['eslint', 'mocha', 'watch']);
