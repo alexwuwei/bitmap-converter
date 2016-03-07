@@ -11,13 +11,14 @@ var bitmapImage = fs.readFileSync(__dirname + '/img/' + process.argv[2]);
 var bitmapHeadData = processHeader(bitmapImage);
 
 
-// console.log('first color is: ' + bitmap[54]);
-// console.dir(bitmapData);
-
 for (var i = bitmapHeadData.pixelArrayStartLocation; i < bitmapHeadData.size - 4; i += 4) {
   var invertedObject = colorHandler.invertColors(colorHandler.readColors(i, bitmapImage));
   colorHandler.writeColors(i, bitmapImage, invertedObject);
   colorHandler.readColors(i, bitmapImage);
 }
+
+// var writeFiles = function(bitmap) {
+//   fs.writeFileSync(__dirname + '/img-output/' + process.argv[2], bitmap);
+// }
 
 fs.writeFileSync(__dirname + '/img-output/' + process.argv[2], bitmapImage);
