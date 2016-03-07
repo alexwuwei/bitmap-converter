@@ -1,10 +1,10 @@
 'use strict';
 
 var gulp = require('gulp'),
-  lint = require('gulp-eslint'),
   mocha = require('gulp-mocha'),
-  chai = require('gulp-chai'),
-  paths = ['*.js', 'lib/*.js', 'test/*.js', 'index.js', 'gulpfile.js'];
+  lint = require('gulp-eslint'),
+  // chai = require('gulp-chai'),
+  paths = ['lib/*.js', 'test/*.js', 'index.js', 'gulpfile.js'];
 
 gulp.task('eslint', function(){
   return gulp.src(paths)
@@ -13,7 +13,7 @@ gulp.task('eslint', function(){
 });
 
 gulp.task('mocha', function(){
-  return gulp.src(paths, {read: false})
+  return gulp.src('test/*.js', {read: false})
     .pipe(mocha({reporter: 'nyan'}));
 });
 

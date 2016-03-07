@@ -74,3 +74,9 @@ describe('colorHandlerBluescaleTesting', function(){
     expect(colorHandler.bluescaleColors(input)).to.eql(expectedOutput);
   });
 });
+
+describe('transform testing for inverting non palette bitmap', function(){
+  it('should make the transform object equal to the invert non palette function', function () {
+
+  });
+});
